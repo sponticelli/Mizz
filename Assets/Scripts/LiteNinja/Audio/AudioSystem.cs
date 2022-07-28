@@ -91,6 +91,14 @@ namespace LiteNinja.Audio
             _config.musicEnabled = musicEnabled;
             SaveConfig();
         }
+        
+        public void PlaySound(AudioClip clip)
+        {
+            if (fxAudioSource.enabled)
+            {
+                fxAudioSource.PlayOneShot(clip);
+            }
+        }
 
         public void PlayMusic(AudioClip clip)
         {
@@ -114,13 +122,7 @@ namespace LiteNinja.Audio
             }
         }
 
-        public void PlaySound(AudioClip clip)
-        {
-            if (fxAudioSource.enabled)
-            {
-                fxAudioSource.PlayOneShot(clip);
-            }
-        }
+        
 
         protected override void OnLoadSystem()
         {
@@ -131,11 +133,12 @@ namespace LiteNinja.Audio
             fxAudioSource.outputAudioMixerGroup = fxAudioMixer;
 
             LoadConfig();
+            Debug.Log("Audio System Loaded");
         }
 
         protected override void OnUnloadSystem()
         {
-            throw new System.NotImplementedException();
+            
         }
 
 
@@ -151,8 +154,8 @@ namespace LiteNinja.Audio
         {
             //TODO Implement me - save Config to file
             //Should be load if the music and/or fx is enabled
-            fxAudioSource.enabled = fxEnabled;
-            musicAudioSource.enabled = musicEnabled;
+            fxAudioSource.enabled = fxEnabled.Value;
+            musicAudioSource.enabled = musicEnabled.Value;
             FxVolume = fxVolume.Value;
             MusicVolume = musicVolume.Value;
         }

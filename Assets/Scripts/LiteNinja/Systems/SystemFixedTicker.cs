@@ -5,7 +5,6 @@ using UnityEngine;
 namespace LiteNinja.Systems
 {
     [AddComponentMenu("LiteNinja/Systems/Tickers/Fixed Ticker")]
-    [DefaultExecutionOrder(-100)]
     public class SystemFixedTicker : MonoBehaviour, ISystemFixedTicker
     {
         private List<IFixedTickableSystem> _fixedTickableSystems;

@@ -11,7 +11,6 @@ namespace LiteNinja.Systems
     /// Update the systems
     /// </summary>
     [AddComponentMenu("LiteNinja/Systems/Tickers/Full Ticker")]
-    [DefaultExecutionOrder(-100)]
     public class SystemFullTicker : MonoBehaviour, ISystemFullTicker
     {
         private List<ITickableSystem> _tickableSystems;

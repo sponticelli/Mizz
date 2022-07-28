@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 namespace LiteNinja.Actions
 {
     [AddComponentMenu("LiteNinja/Actions/AutoLoadScene")]
-    [DefaultExecutionOrder(-150)]
     public class AutoLoadScene : MonoBehaviour
     {
         [SerializeField] private StringVar _sceneName;
@@ -20,12 +19,16 @@ namespace LiteNinja.Actions
             }
             
             //Check if the scene is already loaded
-            if (SceneManager.GetSceneByName(_sceneName.Value).isLoaded)
+            for (var i = 0; i < SceneManager.sceneCount; i++)
             {
-                return;
+                if (SceneManager.GetSceneAt(i).name == _sceneName.Value)
+                {
+                    return;
+                }
             }
-
+            
             SceneManager.LoadScene(_sceneName.Value, _isAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single);
         }
+        
     }
 }
